@@ -1,5 +1,7 @@
 import customtkinter as ctk
 from ui.components.main_window import MainWindow
+from engine.decision_engine import DecisionEngine
+from services.coingecko_service import CoinGeckoService
 
 
 class AppController:
@@ -16,8 +18,16 @@ class AppController:
         self.app.geometry("1400x800")
 
         self.app.minsize(1200,700)
+        
+        self.market_service = CoinGeckoService()
+        
+        self.decision_engine = DecisionEngine(self.market_service)
+        
+        self.main_window = MainWindow(
+        self.app,
+        self.decision_engine
+)
 
-        self.main_window = MainWindow(self.app)
 
 
     def run(self):

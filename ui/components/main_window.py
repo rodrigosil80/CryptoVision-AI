@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from pages.dashboard import Dashboard
 
 from .header import Header
 from .sidebar import Sidebar
@@ -7,9 +8,11 @@ from .statusbar import StatusBar
 
 class MainWindow:
 
-    def __init__(self, master):
+    def __init__(self, master, decision_engine):
 
         self.master = master
+        
+        self.decision_engine = decision_engine
 
         self.configure_window()
 
@@ -64,4 +67,8 @@ class MainWindow:
         column=0,
         columnspan=2,
         sticky="nsew"
+)
+        self.dashboard = Dashboard(
+    self.content,
+    self.decision_engine
 )
